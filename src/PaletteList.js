@@ -7,7 +7,7 @@ import { tsObjectKeyword } from '@babel/types';
 const styles = {
   root: {
     backgroundColor: "blue",
-    height: "100%",
+    height: "100vh",
     display: "flex",
     alignItem: "start",
     justifyContent: "center"
