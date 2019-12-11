@@ -32,14 +32,14 @@ class Navbar extends Component {
   }
 
   render() {
-    const { level, onChange } = this.props;
+    const { level, onChange, hideSlider } = this.props;
     const { format } = this.state
     return (
       <header className="Navbar">
         <div className="logo">
           <Link to="/">reactlogopicker</Link>
         </div>
-        <div className="slider-container">
+        {!hideSlider && <div className="slider-container">
           <span>Level: {level}</span>
           <div className="slider">
             <Slider 
@@ -50,7 +50,7 @@ class Navbar extends Component {
               onAfterChange = {onChange}  
             />
           </div>
-        </div> 
+        </div> }
         <div className="select-container">
           <Select value = {format} onChange={this.handleFormatChange}>
             <MenuItem value="hex">HEX - #ffffff</MenuItem>

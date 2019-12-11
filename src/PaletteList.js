@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import MiniPallete from './MiniPalette';
 import { withStyles } from '@material-ui/styles';
-import { tsObjectKeyword } from '@babel/types';
+
 
 const styles = {
   root: {
@@ -51,7 +50,7 @@ class PaletteList extends Component {
           </nav>
           <div className={classes.palettes}>
             {palettes.map((palette) => (
-                <MiniPallete {...palette} handleClick={() => this.goToPalette(palette.id)}/>
+                <MiniPallete {...palette} handleClick={() => this.goToPalette(palette.id)} key={palette.id}/>
             ))}
           </div>
         </div>  
