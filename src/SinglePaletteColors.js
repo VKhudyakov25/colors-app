@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
+import { Link } from 'react-router-dom';
 import './Palette.css';
 
 class SinglePaletteColors extends Component {
@@ -18,10 +19,11 @@ class SinglePaletteColors extends Component {
   gatherShades(palette, color){
     let shades = [];
     let allColors = palette.colors;
-    for (let key in allColors) 
-      allColors[key].map((shade) => {
-        if (shade.id === color) shades.push(shade)
-      })
+    for (let key in allColors)  {
+      shades = shades.concat(
+        allColors[key].filter(shade => shade.id === color)
+      ); 
+    }
     return shades.slice(1);
   }
 
@@ -31,22 +33,27 @@ class SinglePaletteColors extends Component {
 
   render() {
     const { format } = this.state;
-    const { palette } = this.props;
+    const { emoji, paletteName, id } = this.props.palette;
     const colorBoxes = this._shades.map( shade => (
       <ColorBox 
         background={shade[format]} 
         name={shade.name} 
         key={shade.name} 
-        moreUrl={`/palette/${palette.id}/${shade.id}`}
+        moreUrl={`/palette/${id}/${shade.id}`}
         hideLink
       />
       ));
     return (
-      <div className="Palette">
+      <div className="SingleColorPalette Palette">
         <Navbar handleChange={this.onFormatChange} hideSlider/>
-          <h1>Single Palette Color</h1>
-          <div className="Palette-colors"> {colorBoxes} </div>
-        <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji}/>
+          <div className="Palette-colors"> 
+            {colorBoxes} 
+            <div className="go-back ColorBox">
+              <Link className="go-backBtn" to={`/palette/${id}`}>GO BACK</Link>
+            </div>
+          </div>
+          
+        <PaletteFooter paletteName={paletteName} emoji={emoji}/>
     </div>
     )
   }
