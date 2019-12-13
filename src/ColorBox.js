@@ -19,7 +19,8 @@ const styles = {
     "&:hover button": {
       opacity: "1",
       transition: "0.5s"
-    }
+    },
+    backgroundColor: 'black'
   },
   copyText: {
     color: props => 
