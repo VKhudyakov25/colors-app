@@ -3,6 +3,7 @@ import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import Typography from '@material-ui/core/Typography';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
@@ -27,6 +28,8 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    display: 'flex',
+    alignItems: 'center'
   },
   drawerHeader: {
     display: 'flex',
@@ -52,6 +55,20 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  container: {
+    width: '90%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttons: {
+    width: '100%'
+  },
+  button: {
+    width: '50%'
+  }
 });
 
 class NewPaletteForm extends Component {
@@ -166,16 +183,20 @@ class NewPaletteForm extends Component {
             </IconButton>
           </div>
           <Divider />
-          <div>
+          <div className={classes.container}>
+            <Typography variant="h4" gutterBottom>Design Your Palette</Typography>
+            <div className={classes.buttons}>
             <Button 
               variant="contained" 
               color="secondary" 
+              className={classes.button}
               onClick={this.clearColors}>
                 Clear Palette
             </Button>
             <Button 
               variant="contained" 
               color="primary" 
+              className={classes.button}
               disabled={paletteIsFull}
               onClick={this.addRandomColor}>
                 Random Color
@@ -186,6 +207,7 @@ class NewPaletteForm extends Component {
             updateColor={this.updateColor} 
             addNewColor={this.addNewColor} 
             colors={colors}/>
+          </div>
         </Drawer>
         <main
           className={clsx(classes.content, {
