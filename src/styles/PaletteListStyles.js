@@ -1,6 +1,22 @@
 import sizes from './sizes';
-import bg from './bg.svg'
+import bg from './bg.svg';
 export default {
+  "@global": {
+    ".item-enter": {
+      opacity: 0
+    },
+    ".item-enter-active": {
+      opacity: 1,
+      transition: "opacity 500ms ease-in"
+    },
+    ".item-exit": {
+      opacity: 1
+    },
+    ".item-exit-active": {
+      opacity: 0,
+      transition: "opacity 500ms ease-in"
+    }
+  },
   root: {
     height: "100vh",
     display: "flex",
