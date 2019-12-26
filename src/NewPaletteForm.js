@@ -132,13 +132,10 @@ class NewPaletteForm extends Component {
     })
   }
 
-  handleSubmit(paletteName){
-    const newPalette = {
-      paletteName: paletteName,
-      id: paletteName.toLowerCase().replace(/ /g, "-"),
-      colors: this.state.colors 
-    }
-    this.props.savePalette(newPalette);
+  handleSubmit(palette){
+    palette.id = palette.paletteName.toLowerCase().replace(/ /g, "-");
+    palette.colors = this.state.colors; 
+    this.props.savePalette(palette);
     this.props.history.push("/");
   }
 
@@ -160,7 +157,6 @@ class NewPaletteForm extends Component {
     const { classes, maxColors, palettes } = this.props; 
     const { open, colors } = this.state;
     const paletteIsFull = colors.length >= maxColors;
-    console.log(paletteIsFull, colors.length)
     return (
       <div className={classes.root}>
       <PaletteFormNav 
