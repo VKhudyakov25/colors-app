@@ -157,6 +157,7 @@ class NewPaletteForm extends Component {
             handleRemove={this.handleRemove}
             axis="xy"
             onSortEnd={this.onSortEnd}
+            distance={20}
           />
         </main>
       </div>
