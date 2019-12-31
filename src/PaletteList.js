@@ -50,8 +50,8 @@ class PaletteList extends Component {
   }
 
   render() {
-    const { palettes, classes, deletePalette } = this.props;
-    const { open, deletingItem } = this.state;
+    const { palettes, classes } = this.props;
+    const { open } = this.state;
     return (
       <div className={classes.root}>
         <div className={classes.container}>
