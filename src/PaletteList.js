@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import MiniPallete from './MiniPalette';
 import { withStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ import red from '@material-ui/core/colors/red';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-class PaletteList extends Component {
+class PaletteList extends PureComponent {
   constructor(props){
     super(props);
     this.state = {
@@ -25,7 +25,9 @@ class PaletteList extends Component {
     this.closeDialog = this.closeDialog.bind(this);
     this.openDialog = this.openDialog.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.goToPalette = this.goToPalette.bind(this);
   }
+  
   goToPalette(id) {
     this.props.history.push(`/palette/${id}`)
   }
@@ -62,10 +64,10 @@ class PaletteList extends Component {
 
           <TransitionGroup className={classes.palettes}>
             {palettes.map((palette) => (
-              <CSSTransition key={palette.id} timeout={500} classNames="item">
+              <CSSTransition key={palette.id} timeout={500} classNames="fade">
                 <MiniPallete 
                   {...palette} 
-                  handleClick={() => this.goToPalette(palette.id)} 
+                  handleClick={this.goToPalette} 
                   key={palette.id}
                   id={palette.id} 
                   handleDelete={this.openDialog}/>

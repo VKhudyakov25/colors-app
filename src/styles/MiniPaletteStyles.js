@@ -42,8 +42,6 @@ export default {
     margin: "0 auto",
     position: "relative",
     marginBottom: "-3.5px",
-    // lineHeight: "0"
-    
   },
   deleteIcon: {
     color: "white",

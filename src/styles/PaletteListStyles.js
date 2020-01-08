@@ -2,17 +2,17 @@ import sizes from './sizes';
 import bg from './bg.svg';
 export default {
   "@global": {
-    ".item-enter": {
+    ".fade-enter": {
       opacity: 0
     },
-    ".item-enter-active": {
+    ".fade-enter-active": {
       opacity: 1,
       transition: "opacity 500ms ease-in"
     },
-    ".item-exit": {
+    ".fade-exit": {
       opacity: 1
     },
-    ".item-exit-active": {
+    ".fade-exit-active": {
       opacity: 0,
       transition: "opacity 500ms ease-in"
     }
