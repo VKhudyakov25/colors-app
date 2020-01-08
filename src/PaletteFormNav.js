@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import PaletteMetaForm from './PaletteMetaForm'
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import PaletteMetaForm from './PaletteMetaForm';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
