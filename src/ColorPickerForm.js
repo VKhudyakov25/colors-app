@@ -3,6 +3,7 @@ import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { ChromePicker } from 'react-color';
+import chroma from 'chroma-js';
 import styles from './styles/ColorPickerFormStyles';
 class ColorPickerForm extends Component {
   constructor(props){
@@ -13,6 +14,7 @@ class ColorPickerForm extends Component {
     }
     this.updateColor = this.updateColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -36,22 +38,23 @@ class ColorPickerForm extends Component {
       [e.target.name]: e.target.value
     })
   }
+  handleSubmit(e){
+    this.props.addNewColor(this.state.currentColor, this.state.newColorName); 
+      this.setState({ 
+        newColorName: "" 
+      })
+  }
 
   render() {
     const { currentColor, newColorName } = this.state;
-    const { paletteIsFull, addNewColor, classes } = this.props;
+    const { paletteIsFull, classes } = this.props;
     return (
       <div>
         <ChromePicker 
           color={currentColor} 
           onChangeComplete = {this.updateColor} 
           className={classes.picker}/>
-          <ValidatorForm onSubmit={() => { 
-            addNewColor(currentColor, newColorName); 
-            this.setState({ 
-              newColorName: "" 
-            })
-          }}>
+          <ValidatorForm onSubmit={this.handleSubmit} ref="form" instantValidate={false}>
             <TextValidator 
               label="Color Name"
               value={newColorName}
@@ -68,9 +71,14 @@ class ColorPickerForm extends Component {
               color="primary"
               className={classes.button} 
               disabled = {paletteIsFull}
-              style={{backgroundColor: paletteIsFull 
+              style={{
+                backgroundColor: paletteIsFull 
                 ? "grey"
-                : currentColor}}
+                : currentColor,
+                color: chroma(currentColor).luminance() >= 0.6 
+                  ? "rgba(0,0,0,0.7)" 
+                  : "rgba(255,255,255,0.7)"
+              }}
               type="submit" 
             >
               { paletteIsFull 
